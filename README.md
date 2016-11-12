@@ -9,6 +9,12 @@
     
     The toString() in MainPanel.class can be also modified.  No matter the cell is alived or not, the content of _cell[j][k] will always write into the toWrite string.  Thus the condition to judge the  cell is alive is useless. This modification will slightly decrease the CPU usage.
     
-    The toString() in Cell.class               
+    The toString() in Cell.class scan all the cell from current visiting cell, and always return current state of the first cell.  Base on the function it performs, the method can directly return the current state of the cell rather than scanning other redundant cells. 
     
+##Screenshots
+###Before refactoring
+![](https://github.com/Kururu1992/deliverable4/blob/master/screenshot/origin1.jpg)
+###After refactoring
+![](https://github.com/Kururu1992/deliverable4/blob/master/screenshot/modify3.jpg)
+      
     
