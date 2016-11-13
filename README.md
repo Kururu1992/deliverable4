@@ -9,7 +9,7 @@
     
     The toString() in MainPanel.class can be also modified.  No matter the cell is alived or not, the content of _cell[j][k] will always write into the toWrite string.  Thus the condition to judge the  cell is alive is useless. This modification will slightly decrease the CPU usage.
     
-    The toString() in Cell.class scan all the cell from current visiting cell, and always return current state of the first cell.  Base on the function it performs, the method can directly return the current state of the cell rather than scanning other redundant cells.       
+    The toString() in Cell.class scan all the cell from current visiting cell, and always return current state of the first cell.  Base on the function it performs, the method can directly return the current state of the cell rather than scanning other redundant cells.  This will significantly save the CPU and memory usage.
     
 ##Screenshots
 ###Before refactoring
@@ -20,6 +20,34 @@
 ##Pinning test
 ###Unit test
 
-  The unit test is focus on convertToInt(), toString() in MainPanel and toString() in Cell
+    The unit test is focus on convertToInt(), toString() in MainPanel and toString() in Cell.  Design the unit tests before modification, and keep the unit tests unchange after refactoring.  A reasonable refactoring should perform the same test result.
+    For instance, use -1 to test the edge case of convertToInt().  The result should throw an exception before or after modification.  
+    
+```Java
+/**
+     * Test of convertToInt method, of class MainPanel.
+     * pass -1 as argument, however an array cannot have a negative length
+     * expect an exception
+     */
+    @Test(expected = NegativeArraySizeException.class)
+    public void testConvertToIntNegative() {
+        MainPanel instance = new MainPanel(-1);
+        Class c = MainPanel.class;
+        try{
+            Method method = c.getDeclaredMethod("convertToInt", new Class[]{int.class});
+            method.setAccessible(true);
+            Object result = method.invoke(instance, new Object[]{-1});
+            assertEquals(-1, result);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+    }
+```
+
+###Manual test
+
+    Since the runContinuous() in MainPanel return nothing, it is hard to design the unit test for it.  Thus, the manual test should be applied here.  
+    The basic operation is recording an arrangement of cell before                   
       
     
