@@ -48,6 +48,6 @@
 ###Manual test
 
     Since the runContinuous() in MainPanel return nothing, it is hard to design the unit test for it.  Thus, the manual test should be applied here.  
-    The basic operation is recording an arrangement of cell before modification and then press run continuous button.                                
+    The basic operation is recording an arrangement of cells before modification and then press run continuous button. Then record the result.  After modification, use the same arrangement of cells, then press run continuous button.  Check whether the same result is performed.                                                  
       
     
